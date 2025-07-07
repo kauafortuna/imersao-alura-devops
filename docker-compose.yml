@@ -1,0 +1,39 @@
+
+
+# A seção 'services' é onde definimos os diferentes contêineres (serviços) que compõem nossa aplicação.
+services:
+  # 'api' é o nome que damos ao nosso serviço principal.
+  # Este nome também pode ser usado para comunicação entre contêineres na mesma rede do Compose.
+  api:
+    # A instrução 'build' diz ao Docker Compose para construir uma imagem a partir de um Dockerfile.
+    # O '.' indica que o Dockerfile está no diretório atual (o mesmo do docker-compose.yml).
+    build: .
+    container_name: api # Define um nome específico para o contêiner, facilitando a identificação.
+
+    # A seção 'ports' mapeia portas entre a máquina host (seu computador) e o contêiner.
+    # - "8000:8000" significa: a porta 8000 da sua máquina será redirecionada
+    #   para a porta 8000 dentro do contêiner. Isso permite que você acesse a API
+    #   no seu navegador via http://localhost:8000.
+    ports:
+      - "8000:8000"
+
+    # 'volumes' são usados para persistir dados e para desenvolvimento em tempo real.
+    # - ".:/app" monta (ou "espelha") o diretório atual ('.') da sua máquina no diretório '/app' do contêiner.
+    #   Isto tem dois grandes benefícios para o desenvolvimento:
+    #   1. Hot-Reloading: Qualquer alteração que você fizer no seu código local (.py) será refletida
+    #      instantaneamente dentro do contêiner. O 'uvicorn --reload' (definido no Dockerfile) detecta essa mudança e reinicia o servidor.
+    #   2. Persistência de Dados: O arquivo do banco de dados SQLite ('escola.db') será criado e salvo
+    #      diretamente na sua máquina local, garantindo que os dados não sejam perdidos ao parar ou recriar o contêiner.
+    volumes:
+      - .:/app  # Monta o diretório atual no contêiner, permitindo desenvolvimento em tempo real.
+        # Isso garante que qualquer alteração feita localmente seja refletida imediatamente no contêiner.
+        # Útil para desenvolvimento, pois permite hot-reload do código Python.
+        # O arquivo do banco de dados SQLite (escola.db) também será persistido localmente.
+        # Atenção: alterações feitas dentro do contêiner em /app também aparecerão na sua máquina.
+
+    # A seção 'environment' permite definir variáveis de ambiente para o contêiner.
+    # Essas variáveis podem ser usadas para configurar o comportamento da aplicação sem alterar o código.
+    environment:
+      - PYTHONUNBUFFERED=1  # Garante que a saída do Python seja exibida imediatamente no log do contêiner (boa prática para debug).
+      # Exemplo de como adicionar outras variáveis:
+    
