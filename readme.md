@@ -1,3 +1,9 @@
+**CHEGOU_AO_FIM_DIA14_SAI_MEU_CERTIFICADO**
+
+## COMENTARIO
+
+_Pronto, foi muito bom aprender sobre devops, eu sempre fiquei na duvida.. "ta eu vou fazer o codigo e subir no github, mas eai como que ele vai pra produção?", essa imersão foi otema pra me deixar por dentro da bolha tech, aprender novos termos, uma coisa que eu preciso falar é que ela nao foi tão profunda sabe, tipo explicar ate os menos detalhes como por ex "eu preciso ativar o ambiente virtual toda vez?, ou por ex: buildar? o que é isso, o que seria realmente imagem?".. sçao coisas que pessoas bem iniciantes não sabem... mas fora isso, eestá perfeito muito bom, estou ansioso para as proximas imersões, estou esperando uma de java com projeto pra eu aprender; fico no aguardo do meu certificado, é o meu primeiro certificado pois eu depois vou terminar o curso de logica de programação do gustavo guanabara :) e ai vai ter 2 certificados, eu escrevi MARVEL, ELLIS , YML. pra deixar aqui salvo que ue fiz tudo_
+
 # Imersão DevOps - Alura Google Cloud
 
 Este projeto é uma API desenvolvida com FastAPI para gerenciar alunos, cursos e matrículas em uma instituição de ensino.
@@ -77,6 +83,19 @@ Com o [Docker](https://www.docker.com/get-started/) e o Docker Compose instalado
 
 ---
 
+- O banco de dados SQLite será criado automaticamente como `escola.db` na primeira execução.
+- Para reiniciar o banco, basta apagar o arquivo `escola.db` (isso apagará todos os dados).
+
+---
+
+## Autenticando no Google Cloud
+
+````sh
+gcloud auth login
+gcloud config set project PROJECT_ID
+gcloud run deploy --port=8000
+```j
+
 ## Estrutura do Projeto
 
 - `app.py`: Arquivo principal da aplicação FastAPI.
@@ -92,3 +111,4 @@ Com o [Docker](https://www.docker.com/get-started/) e o Docker Compose instalado
 - Para reiniciar o banco, basta apagar o arquivo `escola.db` (isso apagará todos os dados).
 
 ---
+````
